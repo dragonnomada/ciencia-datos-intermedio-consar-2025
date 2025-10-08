@@ -50,3 +50,57 @@ La densidad generalmente en fenómenos estables tiene un comportamiento fijo a l
 La distribución de los datos le permite a la estadística plantear supuestos sobre los valores esperados y la dispersión entre los datos y cuantifica estos supuestos para construir estadísticos e intervalos de confianza que respaldan los supuestos de prónostico y predicción en los modelos de inferencia.
 
 ![m102](./figuras/m102.png)
+
+## Pruebas de hipótesis
+
+La distribución normal explica todos los fenómenos o eventos poblacionales cuya tendencia es hacia un valor medio o promedio ($\mu$). Esta distribución visualmente parece tener una forma de campana y esta descrita mediante el valor de la desviación estándar de los datos (la raíz cuadrada de la varianza $\sigma^2$).
+
+$$
+f(x; \mu, \sigma^2) = \frac{1}{\sqrt{2 \pi \sigma^2}} \exp{- \frac{(\overline{x} - \mu)^2}{\sigma^2}} 
+$$
+
+La función de densidad permite describir el comportamiento de la variable aleatoria y hacer predicciones sobre su probabilidad, por ejemplo, se puede calcular el intervalo de probabilidad sobre que un dato se encuentre en una región (región de cobertura o probabilidad) y de que la media muestra se aproxime o capture en un intervalo de confianza a la media (intervalo de confianza).
+
+El intervalo de confianza para una confianza $\alpha$ está dado por:
+
+$$
+IC_{\alpha}: (\overline{x} - Z_{\alpha / 2} \frac{\sigma}{\sqrt{n}} \le \mu \le \overline{x} + Z_{\alpha / 2} \frac{\sigma}{\sqrt{n}} )
+$$
+
+Con estos intervalos de confianza se puede construir un método estadístico para plantear una prueba donde la hipótesis sea que la media poblacional $\mu$ tomará el valor de una media específica $\mu_0$, es decir, queremos evaluar si la media de los datos adquiere algún valor y se describe mediante:
+
+$$
+H_0: \mu = \mu_0
+$$
+
+Alternativamente si la prueba es rechazada se supondrá que el supuesto no se cumple y se cumplirá la hipótesis alternativa:
+
+$$
+H_1: \mu \ne \mu_0
+$$
+
+Y a esta prueba se le conoce como **Prueba de Hipótesis** y tiene como ejemplo las siguientes aplicaciones:
+
+1. La media de la edad de retiro en hombres es 62 años ($H_0: \mu = 62$)
+2. La media del tiempo de espera del metrobus es de 3 minutos ($H_0: \mu = 3$)
+3. La media de choques de autos los días lunes es a las 7 horas ($H_0: \mu_1 = 1, \mu_2 = 7$)
+
+![m103](./figuras/m103.png)
+
+## Correlación
+
+La correlación mide el grado de proximidad entre dos variables aleatorias que se asumen normales (se distribuyen normalmente) y tienen un efecto respecto a sus medias:
+
+* **Positivo**: Ambas están arriba o debajo de sus medias
+* **Inverso**: Una está arriba o debajo de su media mientras la otra está al revés
+* **Nulo**: No hay un patrón claro en la diferencia de medias o las variables no son normales
+
+![m104](./figuras/m104.png)
+
+La prueba pearson (Correlación de Pearson) permite obtener el grado de correlación entre dos variables aleatorias numéricas con los valores extremos:
+
+* $+1$ - Si ambas variables crecen al mismo tiempo (correlación positiva)
+* $-1$ - Si una variable crece mientras la otra decrece (correlación inversa)
+* $0$ - Si la correlación es nula (se ve como una nube de puntos)
+
+![m105](./figuras/m105.png)
