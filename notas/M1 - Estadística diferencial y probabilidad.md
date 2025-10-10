@@ -104,3 +104,47 @@ La prueba pearson (Correlación de Pearson) permite obtener el grado de correlac
 * $0$ - Si la correlación es nula (se ve como una nube de puntos)
 
 ![m105](./figuras/m105.png)
+
+## Regresión
+
+Cuando la correlación entre dos variables aleatorias es muy fuerte se determina que la linealidad en sus tendencias es muy fuerte, esto se interpreta como que una recta que expresa el comportamiento lineal entre la relación de ambas variables explica el patrón de comportamiento.
+
+En términos simples, significa que una línea reacta muy poco aleaja (bandas cortas) de los datos es capaz de explicar el comportamiento entre la variable aleatoria independiente y la dependiente.
+
+![m106](./figuras/m106.png)
+
+## Análisis de la varianza (ANOVA)
+
+El método ANOVA (Analysis of Variance) es muy útil para probar estadísticamente en una prueba de hipótesis, si los datos de una variable aleatoria dividida en grupos mantendrá la misma media entre los grupos, es decir, que dividir los datos en grupos será insignificante o no informativo.
+
+Sin embargo, cuando la prueba es rechazada, se justifica que al menos uno de los grupos tenga un comportamiento en su media y varianza distinto que el resto de grupos. Es por esto, que a esta prueba estadística se le conoce como el método de una vía entre-grupos.
+
+La prueba de hipótesis se plantea como:
+
+$$
+H_0: \mu^{(1)} = \mu^{(2)} = \ldots = \mu^{(k)}
+$$
+
+donde $\mu^{(j)}, j = 1, 2, \ldots, k$ representa la media del j-ésimo grupo de la misma variable aleatoria.
+
+Una forma ilustrada de ver este comportamiento es pensar que un eje de análisis (dado por la variable aleatoria de interés), es dividido en sub-ejes formados por un grupo cada uno. Es decir, un eje de análisis numérico como la cantidad de piezas vendidas es partido por otro eje de datos categórico como el tipo de venta.
+
+![m107](./figuras/m107.png)
+
+En las pruebas de hipótesis el $p_{valor}$ determina la credibilidad (0 - baja, 1 - alta) de que la hipótesis $H_0$ sea aceptada.
+
+Entre más bajo sea el $p_{valor}$, menos creible será que la hipótesis nula sea verdad, lo que significaría que al menos uno de los grupos tiene un comportamiento distinto.
+
+Por ejemplo, las piezas vendidas de tipo `NUTRICIÓN` tienen un comportamiento similar a las piezas vendidas de tipo `SISTEMA NERVIOSO` (misma tendencia). Sin embargo, para piezas de tipo `SISTEMA RESPIRATORIO` el comportamiento es distinto, por lo que:
+
+$$
+H_0: \mu^{(1)} = \mu^{(2)} \ne \mu^{(3)}
+$$
+
+que explica que los primeros dos grupos se comportan de forma similar, pero estos se comportan distinto del tercer grupo.
+
+Gráficamente lo vemos como que dos grupos tienen tendencias similares, pero el tercero no:
+
+![m108](./figuras/m108.png)
+
+![m109](./figuras/m109.png)
