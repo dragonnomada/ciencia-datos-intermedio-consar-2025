@@ -72,6 +72,12 @@ Existen dos problemas principales del aprendizaje automático y dos modelos clá
 1. **Problema de regresión (lineal)** - Consiste en ajustar una nube de puntos (características más la respuesta *abierta*) a una recta, plano o híper-plano según el número de características.
 2. **Problema de clasificación (logístico)** - Consiste en ajustar una nuebe puntos (caterísticas más la respuesta binaria *cerrada*) a una curva logística.
 
+![m204a](./figuras/m204a.png)
+
+Ajuste del kernel para transformar una función no lineal en lineal.
+
+![m204a](./figuras/m204b.png)
+
 ### Regresión lineal
 
 La regresión lineal consiste en encontrar un conjunto de parámetros **lineales** que ajusten una recta (plano o híperpláno) según el número de características (covariables). Los parémetros desconocidos se conocen como parámetros de regresión y expresan la importancia positiva o negativa de una covariable hacia la respuesta. Es decir, entre más grande sea un parámetro de regresión, mayor será la importancia de la covariable hacia la respuesta, a esta variable se le conocerá como variable informativa, y cuando el parámetro regresión es cero se le llama variable no informativa.
