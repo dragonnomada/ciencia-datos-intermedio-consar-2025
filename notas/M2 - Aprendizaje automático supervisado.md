@@ -129,3 +129,75 @@ $$
 y = \frac{\exp{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_k x_k}}{1 + \exp{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_k x_k}}
 $$
 
+## Problema de Clasificación
+
+En los problemas de aprendizaje automático supervisado se descompone el conjunto de datos histórico (observaciones del fénomeno o problema) en dos tipos de variables aleatorias:
+
+* **Características** - son las variables aleatorias independientes que **no aportan** una respuesta dependiente o directa, por ejemplo, las características de una persona para determinar su enfermedad, las características de un automóvil para determinar su eficiencia, las características económicas para deteminar una caída en la bolsa, etc.
+* **Respuestas** - son las variables aleatorias dependientes de las características y que se derivan o predicen mediante un modelo dadas las otras variables, por ejemplo, si una persona tendrá diabetes dada su edad, presión arterial y peso, si un automóvil tendrá una falla mecánica los próximos 6 meses dadas sus características como presión de las llantas, número de puertas, marca del fabricante, tipo de conductor, si la bolsa tendrá un cierre positivo o negativo dadas las acciones e información del día, etc.
+
+![m205](./figuras/m205.png)
+
+Cuando las respuestas del conjunto de datos son continuas (numéricas no acotadas), nos enfrentamos a un problema de regresión, donde el objetivo es buscar un valor entre casi infinitas posibilidades. Sin embargo, cuando la respuesta es categórica (un valor cualitativo o cuantitativo finito o acotado), entonces, nos enfrentamos a un problema de clasificación, donde cada categoría de la respuesta será tratada como una clase y el objetivo es encontrar la clase o categoría a las que pertenecen un conjunto de características, por ejemplo, dadas las características de una persona, responder el tipo de enfermedad que tiene, o dadas las características de un automóvil responder el tipo de falla mecánica en los próximos 6 meses o dadas las características de las acciones predecir el tipo de cierre en la bolsa.
+
+![m206](./figuras/m206.png)
+
+Cuando la respuesta se simplifica a dos clases, entonces la consideramos una respuesta binaria y un problema de clasificación binario. Y cuando la respuesta tiene muchas clases se considera un problema de clasificación multi-clase.
+
+En problemas binarios la regresión logística es suficiente, pero en problemas multi-clase los modelos de árboles de decisión y bosques aleatorios tienen mayor relevancia.
+
+![m207](./figuras/m207.png)
+
+### Árbol de decisión
+
+Una decisión ($h$) se compone de someter a una variable aleatoria de las características ($x_j$) para superar un umbral o número ($\eta_h$) que logre partir el espacio en dos ($x_j > \eta_h$). Entonces la respuesta que está formada de categorías o clases, determinará dos numéros de conteo sobre cuántas observaciones de las separadas quedan del mismo lado ($a_i$ - izquierda, $b_i$ - derecha), teniendo dos proporciones de cuántos datos hay de la misma clase en cada lado. Es decir, los valores $a_i$ y $b_i$ determinan las proporciones de aparaciones de la respuesta en la $i$-ésima clase antes y después del umbral.
+
+![m208c](./figuras/m208c.png)
+
+Con los valores de las prorpociones $a_i$ y $b_i$ podemos calcular un índice de error llamado *gini* que se basa en el cálculo de la entroía entre ambos valores, ya que suponemos que los valores extremos son óptimos, es decir, que $a_i = 1$ cuando $b_i = 0$ o al revés $a_i = 0$ cuando $b_i = 1$. Esto es óptimo porque la clase estaría muy bien separada por el umbral. Pero si los valores no son extremos, entonces calculamos el error con la entropía como:
+
+$$
+\varepsilon_i = a_i b_i + (1 - a_i) (1 - b_i)
+$$
+
+Entonces, diremos que el umbral que separa mejor la decisión (separa bien las clases), es aquel que tenga una entropía o índice de *gini* casi cero, en promedio para todas las clases.
+
+![m208a](./figuras/m208a.png)
+
+Por ejemplo, si la característica $x$ representa la distancia en kilómetros de un empleado a su trabajo y la respuesta es el tipo de demora que tendrá (clase 1 - $M$ madrugador, clase 2 - $P$ puntual y clase 3 - $L$ lento). Entonces podemos construir decisiones tomando la característica $x$ y fijando un umbral que separe las clases, por ejemplo, $15$ kilómetros y luego $6$ kilómetros. Para cada umbral hay que determinar su índice *gini* o entropía simple.
+
+![m208b](./figuras/m208b.png)
+
+### Bosque aleatorio
+
+Un árbol de decisión es capaz de tomar múltiples decisiones anidadas para llegar a una conclusión (probabilidad de que la respuesta sea cierta categoría o clase).
+
+Sin embargo, muchos árboles de decisión podrían ser más precisos en la respuesta, por ejemplo, el primer árbol de decisión podría separar inmediatamente el espacio por la característica $x_{j_1}$, mientras que un segundo árbol de decisión podría separar inmediatamente el espacio por la característica $x_{j_2}$, creando decisiones distintas, que al final determinarán con mayor o menor precisión cuál es la clase final de respuesta.
+
+Uniendo muchos árboles de decisión podemos crear un bosque aleatorio, que determine la respuesta promedio o respuesta más creíble de entre todos los árboles de decisión unidos. A este método de ensamble se le conoce como el **Bosque Aleatorio** (*Random Fores*) y consiste en crear un bosque con muchos árboles de decisión aleatorios que hagan más precisa la predicción de la respuesta.
+
+### Métricas de evaluación
+
+Al clasificar observaciones (respuestas categóricas), podemos centrarnos en qué tan bien el modelo o clasificador logra predecir si la clase o categoría es correcta (verdadero) o incorrecta (falsa).
+
+Entonces, para cada observación podemos hacer conteo de cuántos resultados que debieron ser correctos fueron correctos (clasificados correctamente como verdaderos positivos) y cuántos resultados que debian ser incorrectos fueron incorrectos (clasificados correctamente como falsos positivos).
+
+* **Verdadero positivo** - Cuando el valor observado o respuesta es la categoría y el modelo predice la misma la misma categoría se considera correcto en la forma verdadero positivo.
+* **Falso positivo** - Cuando el valor observado o respuesta no es la categoría y el modelo predice otra categoría se considera correcto en la forma falso positivo.
+* **Verdadero negativo** - Cuando el modelo predice la categoría pero el valor observado no es la categoría se considera incorrecto en la forma verdadero negativo (predicción a la categoría pero incorrecta).
+* **Falso negativo** - Cuando el modelo predice otra categoría pero el valor observado es la categoría se considera incorrecto en la forma falso negativo (predicción a otra categoría incorrecta).
+
+La matriz de confusión ordena los valores observados reales verderos (pertenece a la categoría) o falsos (no pertenece a la categoría) en un eje, y los valores de predicción verdaderos (se predice la categoría) o falsos (no se predice la categoría) en el otro eje, formando una matriz de conteos como:
+
+$$
+F_p F_p \\
+T_n T_p
+$$
+
+Matriz de confusión
+
+![m209a](./figuras/m209a.png)
+
+Métricas
+
+![m209b](./figuras/m209b.png)
